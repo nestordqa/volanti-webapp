@@ -37,7 +37,7 @@ const UploadCSV = () => {
 
         try {
             // Realiza la solicitud POST a la API
-            const response = await axios.post(apiUrl, formData, {
+            const response = await axios.post(`${apiUrl}/import`, formData, {
                 headers: { 'Content-Type': 'multipart/form-data' },
                 timeout: 120000,
             });
