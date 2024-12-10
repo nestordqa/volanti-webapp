@@ -1,6 +1,6 @@
 // src/store.js
-import create from 'zustand';
-import api from './api';
+import axios from 'axios';
+import { create } from 'zustand';
 
 const apiUrl = process.env.REACT_APP_API_URL;
 
@@ -12,28 +12,28 @@ const useStore = create((set) => ({
     
     // Fetching functions
     fetchCustomers: async () => {
-        const response = await api.get(`${apiUrl}/customers`);
+        const response = await axios.get(`${apiUrl}/customers`);
         set({ customers: response.data });
     },
     
     fetchVehicles: async () => {
-        const response = await api.get(`${apiUrl}/vehicles`);
+        const response = await axios.get(`${apiUrl}/vehicles`);
         set({ vehicles: response.data });
     },
     
     fetchAppointments: async () => {
-        const response = await api.get(`${apiUrl}/appointments`);
+        const response = await axios.get(`${apiUrl}/appointments`);
         set({ appointments: response.data });
     },
     
     fetchPhones: async () => {
-        const response = await api.get(`${apiUrl}/phones`);
+        const response = await axios.get(`${apiUrl}/phones`);
         set({ phones: response.data });
     },
 
     // Customer functions
     updateCustomer: async (id, updatedCustomer) => {
-        const response = await api.put(`${apiUrl}/customers/${id}`, updatedCustomer);
+        const response = await axios.put(`${apiUrl}/customers/${id}`, updatedCustomer);
         set((state) => ({
             customers: state.customers.map((customer) =>
                 customer.id === id ? response.data : customer
@@ -42,7 +42,7 @@ const useStore = create((set) => ({
     },
 
     deleteCustomer: async (id) => {
-        await api.delete(`${apiUrl}/customers/${id}`);
+        await axios.delete(`${apiUrl}/customers/${id}`);
         set((state) => ({
             customers: state.customers.filter((customer) => customer.id !== id),
         }));
@@ -50,7 +50,7 @@ const useStore = create((set) => ({
 
     // Vehicle functions
     updateVehicle: async (id, updatedVehicle) => {
-        const response = await api.put(`${apiUrl}/vehicles/${id}`, updatedVehicle);
+        const response = await axios.put(`${apiUrl}/vehicles/${id}`, updatedVehicle);
         set((state) => ({
             vehicles: state.vehicles.map((vehicle) =>
                 vehicle.id === id ? response.data : vehicle
@@ -59,7 +59,7 @@ const useStore = create((set) => ({
     },
 
     deleteVehicle: async (id) => {
-        await api.delete(`${apiUrl}/vehicles/${id}`);
+        await axios.delete(`${apiUrl}/vehicles/${id}`);
         set((state) => ({
             vehicles: state.vehicles.filter((vehicle) => vehicle.id !== id),
         }));
@@ -67,7 +67,7 @@ const useStore = create((set) => ({
 
     // Appointment functions
     updateAppointment: async (id, updatedAppointment) => {
-        const response = await api.put(`${apiUrl}/appointments/${id}`, updatedAppointment);
+        const response = await axios.put(`${apiUrl}/appointments/${id}`, updatedAppointment);
         set((state) => ({
             appointments: state.appointments.map((appointment) =>
                 appointment.id === id ? response.data : appointment
@@ -76,7 +76,7 @@ const useStore = create((set) => ({
     },
 
     deleteAppointment: async (id) => {
-        await api.delete(`${apiUrl}/appointments/${id}`);
+        await axios.delete(`${apiUrl}/appointments/${id}`);
         set((state) => ({
             appointments: state.appointments.filter((appointment) => appointment.id !== id),
         }));
@@ -84,7 +84,7 @@ const useStore = create((set) => ({
 
     // Phone functions
     updatePhone: async (id, updatedPhone) => {
-        const response = await api.put(`${apiUrl}/phones/${id}`, updatedPhone);
+        const response = await axios.put(`${apiUrl}/phones/${id}`, updatedPhone);
         set((state) => ({
             phones: state.phones.map((phone) =>
                 phone.id === id ? response.data : phone
@@ -93,7 +93,7 @@ const useStore = create((set) => ({
     },
 
     deletePhone: async (id) => {
-        await api.delete(`${apiUrl}/phones/${id}`);
+        await axios.delete(`${apiUrl}/phones/${id}`);
         set((state) => ({
             phones: state.phones.filter((phone) => phone.id !== id),
         }));
