@@ -2,10 +2,13 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { CircularProgress } from '@mui/material';
 import { Save as SaveIcon } from '@mui/icons-material';
+import { Layout } from './layout/Layout';
+import { useNavigate } from 'react-router-dom';
 
 const UploadCSV = () => {
     // Estados para manejar el archivo, carga, respuesta de la API, errores y mensajes
     const apiUrl = process.env.REACT_APP_API_URL;
+    const navigate = useNavigate();
     const [file, setFile] = useState(null);
     const [fileLoading, setFileLoading] = useState(false);
     const [respuestaApi, setRespuestaApi] = useState(null);
@@ -23,11 +26,17 @@ const UploadCSV = () => {
         }, 2000);
     };
 
+    //Redigire al dashboard de los registros
+    const redirectToDashboard = () => {
+        navigate('/costumers')
+    }
+
     // Maneja el envío del formulario y realiza la solicitud a la API
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (!file) return; // Verifica que haya un archivo seleccionado
 
+        setRespuestaApi(null);
         setLoading(true);
         setError(false);
         setMessage('');
@@ -37,7 +46,7 @@ const UploadCSV = () => {
 
         try {
             // Realiza la solicitud POST a la API
-            const response = await axios.post(apiUrl, formData, {
+            const response = await axios.post(`${apiUrl}/import`, formData, {
                 headers: { 'Content-Type': 'multipart/form-data' },
                 timeout: 120000,
             });
@@ -55,9 +64,9 @@ const UploadCSV = () => {
     };
 
     return (
-        <div className="flex items-center justify-center h-screen w-screen bg-gray-800">
+        <Layout>
             <div className="bg-white p-8 rounded-lg shadow-lg w-1/3 h-1/3">
-                <h1 className="text-3xl font-bold mb-4 text-center text-gray-700">Subir CSV</h1>
+                <h1 className="text-3xl font-bold mb-4 text-center text-gray-700">Upload CSV</h1>
                 <form onSubmit={handleSubmit} className="flex flex-col">
                     <input
                         type="file"
@@ -78,7 +87,7 @@ const UploadCSV = () => {
                         ) : (
                             <>
                                 <SaveIcon className="mr-2" />
-                                Subir
+                                Upload
                             </>
                         )}
                     </button>
@@ -95,8 +104,16 @@ const UploadCSV = () => {
                         <li><b>Entradas analizadas con errores: </b>{respuestaApi.notOk}</li>
                     </ul>
                 )}
+                <div className="flex w-full justify-center mt-8">
+                    <button
+                        className={`flex items-center justify-center bg-blue-500 text-white font-semibold py-2 rounded transition duration-200' : 'hover:bg-blue-600'} w-1/2`}
+                        onClick={redirectToDashboard}
+                    >
+                        Look at the records!
+                    </button>
+                </div>
             </div>
-        </div>
+        </Layout>
     );
 };
 
