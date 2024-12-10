@@ -57,18 +57,18 @@ export const CustomersTable = () => {
                         <table className="min-w-full bg-transparent border border-gray-600">
                             <thead>
                                 <tr className="bg-gray-900 text-gray-200 uppercase text-sm leading-normal">
-                                    <th className="py-3 px-6 text-left">Alias</th>
-                                    <th className="py-3 px-6 text-left">Es Empresa</th>
-                                    <th className="py-3 px-6 text-left">Nombre</th>
-                                    <th className="py-3 px-6 text-left">Teléfonos</th>
-                                    <th className="py-3 px-6 text-left">Acciones</th>
+                                    <th className="py-3 px-6 text-left">Username</th>
+                                    <th className="py-3 px-6 text-left">Is company?</th>
+                                    <th className="py-3 px-6 text-left">Fullname</th>
+                                    <th className="py-3 px-6 text-left">Phones</th>
+                                    <th className="py-3 px-6 text-left">Actions</th>
                                 </tr>
                             </thead>
                             <tbody className="text-gray-300 text-sm font-light">
                                 {currentItems.map((item, index) => ( // Mapear los elementos actuales para mostrarlos
                                     <tr key={index} className="border-b border-gray-200 hover:bg-gray-700">
                                         <td className="py-3 px-6">{item.alias}</td>
-                                        <td className="py-3 px-6">{item.is_company ? 'Sí' : 'No'}</td>
+                                        <td className="py-3 px-6">{item.is_company ? 'Yes' : 'No'}</td>
                                         <td className="py-3 px-6">{item.name}</td>
                                         <td className="py-3 px-6">
                                             {item.phones.map((phone, idx) => ( // Mapear los números de teléfono
@@ -101,7 +101,7 @@ export const CustomersTable = () => {
                     </div>
                 }
                 {
-                    !currentItems.length && <div className='w-full h-full flex justify-center items-center text-6xl'>No existen clientes aún</div> // Mensaje cuando no hay registros
+                    !currentItems.length && <div className='w-full h-full flex justify-center items-center text-6xl'>There are not costumers yet!</div> // Mensaje cuando no hay registros
                 }
             </div>
         </Layout>  
