@@ -45,7 +45,6 @@ export const Navigation = () => {
                             <Link to="/" className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white" aria-current="page">Upload Registers</Link>
                             <Link to="/costumers" className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white" aria-current="page">Customers</Link>
                             <Link to="/vehicles" className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Vehicles</Link>
-                            <Link to="/phones" className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Phones</Link>
                             <Link to="/appointments" className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Appointments</Link>
                         </div>
                     </div>

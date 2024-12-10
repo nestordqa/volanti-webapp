@@ -36,6 +36,7 @@ const UploadCSV = () => {
         e.preventDefault();
         if (!file) return; // Verifica que haya un archivo seleccionado
 
+        setRespuestaApi(null);
         setLoading(true);
         setError(false);
         setMessage('');
@@ -65,7 +66,7 @@ const UploadCSV = () => {
     return (
         <Layout>
             <div className="bg-white p-8 rounded-lg shadow-lg w-1/3 h-1/3">
-                <h1 className="text-3xl font-bold mb-4 text-center text-gray-700">Subir CSV</h1>
+                <h1 className="text-3xl font-bold mb-4 text-center text-gray-700">Upload CSV</h1>
                 <form onSubmit={handleSubmit} className="flex flex-col">
                     <input
                         type="file"
@@ -86,7 +87,7 @@ const UploadCSV = () => {
                         ) : (
                             <>
                                 <SaveIcon className="mr-2" />
-                                Subir
+                                Upload
                             </>
                         )}
                     </button>
@@ -108,7 +109,7 @@ const UploadCSV = () => {
                         className={`flex items-center justify-center bg-blue-500 text-white font-semibold py-2 rounded transition duration-200' : 'hover:bg-blue-600'} w-1/2`}
                         onClick={redirectToDashboard}
                     >
-                        Ver registros
+                        Look at the records!
                     </button>
                 </div>
             </div>

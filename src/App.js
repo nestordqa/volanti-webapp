@@ -3,7 +3,6 @@ import './App.css';
 import UploadCSV from './components/ImportCVS';
 import { CustomersTable } from './components/tables/CustomersTable';
 import { VehiclesTable } from './components/tables/VehiclesTable';
-import { PhonesTable } from './components/tables/PhonesTable';
 import { AppointmentTable } from './components/tables/AppointmentTable';
 
 function App() {
@@ -13,7 +12,6 @@ function App() {
                 <Route path='/' element={<UploadCSV />}/>
                 <Route path='costumers' element={<CustomersTable />}/>
                 <Route path='vehicles' element={<VehiclesTable />}/>
-                <Route path='phones' element={<PhonesTable />}/>
                 <Route path='appointments' element={<AppointmentTable />}/>
             </Routes>
         </BrowserRouter>

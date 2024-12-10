@@ -27,7 +27,7 @@ export const VehiclesTable = () => {
         )
         .then(async (alert) => {
             if (alert.isConfirmed) {
-                await deleteVehicle(id); // Llamar a deleteCustomer si se confirma
+                await deleteVehicle(id); // Llamar a deleteVehicle si se confirma
                 return;
             } else {
                 return; // No hacer nada si se cancela
@@ -40,7 +40,7 @@ export const VehiclesTable = () => {
         console.log(`TODO: Funcionalidad para actualizar registro: ${id}`);
     };
 
-    // Obtener clientes cuando el componente se monta o cuando cambian los vehiculos
+    // Obtener citas cuando el componente se monta o cuando cambian los vehiculos
     useEffect(() => {
         if (vehicles && vehicles.length) return; // Si ya se han obtenido los vehiculos, no hacer nada
         fetchVehicles();
@@ -50,7 +50,7 @@ export const VehiclesTable = () => {
             <div className="flex flex-col w-full h-full justify-start items-center">
                 <Navigation />
                 {
-                    currentItems && currentItems.length && // Verificar si hay elementos actuales para mostrar
+                    currentItems && currentItems.length > 0 && // Verificar si hay elementos actuales para mostrar
                     <div className="w-full h-full overflow-x-hidden p-4 flex justify-start items-center flex-col">
                         <h2 className='text-3xl mb-4 text-gray-300 font-bold'>Vehicles</h2>
                         <table className="min-w-full bg-transparent border border-gray-600">
@@ -98,7 +98,7 @@ export const VehiclesTable = () => {
                     </div>
                 }
                 {
-                    !currentItems.length && <div className='w-full h-full flex justify-center items-center text-6xl'>´There are not vehicles yet!</div> // Mensaje cuando no hay registros
+                    !currentItems.length && <div className='w-full h-full flex justify-center items-center text-6xl text-gray-300'>´There are not vehicles yet!</div> // Mensaje cuando no hay registros
                 }
             </div>
         </Layout>  
